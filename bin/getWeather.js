@@ -2,7 +2,9 @@
 
 const http = require('http');
 const format = require("./format.js");
-/*const url = 'http://api.jirengu.com/weather.php';*/
+const {success} = format;
+console.log(success);
+
 const basicUrl = `apis.baidu.com`;
 const basicPath = `/heweather/weather/free?`;
 const cityList = require("../lib/city-list.js");
@@ -72,7 +74,11 @@ module.exports = (argv) => {
             response.on('data', data=> {
                 console.log(data);
                 const json = JSON.parse(data);
-                console.log(json);
+               // console.log(json);
+                success(json);
+            })
+             response.on('end', () => {
+                console.log("\n");
             })
         }
         const req = http.request(option, callback);
