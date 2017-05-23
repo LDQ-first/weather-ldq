@@ -1,0 +1,22 @@
+{
+  "name": "weather-ldq",
+  "version": "1.0.0",
+  "description": "a tool to get weather",
+  "main": "./bin/weather-ldq-weather.js",
+  "bin": {
+    "weather": "./bin/weather-ldq-weather.js",
+    "weather-ldq": "./bin/weather-ldq.js",
+    "wlq": "./bin/weather-ldq.js"
+  },
+  "scripts": {
+    "weather": "node ./bin/weather-ldq-weather.js",
+    "weather-ldq": "node ./bin/weather-ldq.js",
+    "wlq": "node ./bin/weather-ldq.js"
+  },
+  "author": "ldq-first",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "yargs": "^8.0.1"
+  }
+}
