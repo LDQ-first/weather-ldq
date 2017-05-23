@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 const http = require('http');
+const axios = require('axios');
 const format = require("./format.js");
 const {success} = format;
-console.log(success);
+
 
 const basicUrl = `apis.baidu.com`;
 const basicPath = `/heweather/weather/free?`;
@@ -22,6 +23,10 @@ const word = wordString.split('');
 const option = {
     host: 'api.jirengu.com',
     path: '/weather.php'
+}
+
+const config = {
+
 }
 
 
@@ -68,21 +73,28 @@ const english = () => {
 }
 
 
-module.exports = (argv) => {
-    if(city == 0) {
-        const callback = response => {
-            response.on('data', data=> {
-                console.log(data);
-                const json = JSON.parse(data);
-               // console.log(json);
-                success(json);
+
+
+module.exports = () => {
+    if(city == '') {
+        axios.get('http://api.jirengu.com/weather.php').then((response) => {
+            console.log(response.data);
+           /* const json = JSON.parse(JSON.stringify(response.data));
+            console.log(json);*/
+            success(response.data);
+        })
+        /*const callback = response => {
+            response.on('data', data => {
+                success(data);
+                //var json = JSON.parse(data);
+               // success(JSON.parse(data));
             })
              response.on('end', () => {
                 console.log("\n");
             })
         }
         const req = http.request(option, callback);
-        req.end();
+        req.end();*/
     }
     else if(english()) {
 
